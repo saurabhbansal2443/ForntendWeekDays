@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5143/users",
+    baseUrl: "https://backendweekdays-3.onrender.com/users",
     credentials: "include",
     prepareHeaders: (headers) => {
       headers.set('Content-Type', 'application/json');
@@ -28,7 +28,7 @@ const apiSlice = createApi({
     update: builder.mutation({
       query: (data) => ({
         url: "/update",
-        method: "POST",
+        method: "PATCH",
         body: data,
       }),
     }),

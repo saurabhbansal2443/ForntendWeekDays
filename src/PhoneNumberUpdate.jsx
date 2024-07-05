@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useUpdateMutation } from "./Utility/authApi";
+import { useGetUserQuery, useUpdateMutation } from "./Utility/authApi";
 
 const PhoneNumberUpdate = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [updateNumber] = useUpdateMutation();
+  const {refetch} = useGetUserQuery();
 
   const addPhoneNumber = async () => {
     const obj = {
@@ -12,6 +13,7 @@ const PhoneNumberUpdate = () => {
 
     try {
       const res = await updateNumber(obj);
+      refetch();
       console.log("Update Response:", res);
     } catch (error) {
       console.error("Update Error:", error);
